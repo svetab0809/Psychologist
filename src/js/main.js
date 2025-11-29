@@ -64,6 +64,9 @@ for (let form of forms) {
 
         const requestData = new FormData(this)
         const formModal = document.querySelector('.modal')
+        const loader = document.querySelector('.loading-container')
+
+        loader.style.display = 'block'
 
         if (formModal.style.display === 'block') {
             formModal.style.display = 'none'
@@ -74,12 +77,17 @@ for (let form of forms) {
             body: requestData
         }).then((response) => {
             response.json().then((data) => {
-
                 if (data === 'ok') {
                     const successModal = document.querySelector('.modal-window')
 
+                    loader.style.display = 'none'
                     successModal.style.display = 'block'
                 } else {
+                    const errorModal = document.querySelector('.modal-window_error')
+
+                    loader.style.display = 'none'
+                    errorModal.style.display = 'block'
+
                     console.error(data)
                 }
             })
@@ -89,7 +97,6 @@ for (let form of forms) {
         })
     })
 }
-
 
 const reviewSlider = new Swiper('.reviews', {
     loop: true,

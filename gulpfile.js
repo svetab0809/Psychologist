@@ -27,10 +27,6 @@ function less_translator() {
         .pipe(reload({stream: true}))
 }
 
-function img() {
-    return src('./src/img/**/*').pipe(dest('./img'))
-}
-
 function fonts() {
     return src('./src/fonts/**/*').pipe(dest('./fonts'))
 }
@@ -48,8 +44,7 @@ function js() {
 }
 
 function php() {
-    return src('./src/php/**/*')
-        .pipe(dest('./php'))
+    return src('./src/php/**/*').pipe(dest('./php'))
 }
 
 const config = {
@@ -66,15 +61,13 @@ function webServer(cb) {
 }
 
 function sound() {
-    return src('./src/sound/**/*')
-        .pipe(dest('./sound'))
+    return src('./src/sound/**/*').pipe(dest('./sound'))
 }
 
 function watchAll(cb) {
     watch('./src/*.html', html)
     watch('./src/blocks/*.html', html)
     watch('./src/less/*.less', less_translator)
-    watch('./src/img/**/*', img)
     watch('./src/fonts/**/*', fonts)
     watch('./src/libs/**/*', libs)
     watch('./src/js/**/*', js)
